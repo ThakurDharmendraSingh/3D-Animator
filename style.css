@@ -1,0 +1,428 @@
+/* =====================
+   DARK GLASS THEME RESTORE (UPDATED)
+   ===================== */
+:root {
+  --accent: #ffffff;
+  --bg-dark: rgba(0, 0, 0, 0.95);
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --text-light: #ffffff;
+  --text-dim: #cccccc;
+  --border: rgba(255,255,255,0.15);
+  --shadow: 0 4px 20px rgba(0,0,0,0.7);
+  --glow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Global */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('backgrounds/IMG_2254.JPG') center/cover fixed no-repeat;
+  color: var(--text-light);
+  /* Optimize rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+/* Wrapper */
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.left-sidebar {
+  width: 250px;
+  background: var(--bg-dark);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  /* Optimize scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+.sidebar-header {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--accent);
+}
+.sidebar-header .tagline {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-light);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  border-radius: 8px;
+  margin: 3px 10px;
+  font-size: 14px;
+}
+.sidebar-menu a:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--accent);
+  text-shadow: var(--glow);
+}
+
+/* 🔹 Submenu Animation & Chevron Rotation */
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.submenu.open {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chevron {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotate {
+  transform: rotate(90deg);
+}
+
+/* Main Wrapper */
+.main-wrapper {
+  flex: 1;
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  height: 60px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--bg-glass);
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  width: 200px;
+}
+.search-box button {
+  background: var(--accent);
+  border: none;
+  color: #000;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.search-box button:hover {
+  background: #ffffff;
+  box-shadow: var(--glow);
+}
+
+/* ===== PRODUCTS GRID ===== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 25px;
+  padding: 40px;
+  justify-items: center;
+}
+@media (max-width: 1600px) { .products-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 1300px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 992px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+
+/* Product Card */
+.product-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: 0.3s;
+  width: 100%;
+  max-width: 220px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Optimize rendering */
+  will-change: transform;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+}
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  /* Optimize loading */
+  loading: lazy;
+}
+.product-info {
+  padding: 12px;
+  text-align: center;
+}
+.product-info h3 {
+  font-size: 15px;
+  color: var(--accent);
+  margin: 8px 0;
+}
+.product-info p {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 0;
+}
+.view-btn {
+  background: var(--accent);
+  color: #000;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+}
+.view-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(255,255,255,0.7);
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Footer */
+.footer {
+  background: rgba(0,0,0,0.8);
+  color: var(--text-dim);
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== SLIDESHOW ===== */
+.slideshow-container {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  /* Optimize rendering */
+  will-change: transform;
+  /* Ensure container has proper dimensions */
+  width: 100%;
+}
+
+/* Main Horizontal Slideshow */
+.main-slideshow {
+  max-width: 1200px;
+  width: 90%;
+  margin: 40px auto 20px auto;
+  position: relative;
+  height: 500px;
+}
+
+/* Bottom Two Slideshows Container */
+.bottom-slideshows {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto 40px auto;
+}
+
+/* Small Slideshows */
+.small-slideshow {
+  flex: 1;
+  position: relative;
+  height: 400px;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  /* Optimize loading */
+  loading: lazy;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* Small slides */
+.slide-small {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  /* Optimize loading */
+  loading: lazy;
+}
+
+.slide-small.active {
+  display: block;
+}
+
+/* Fade animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+.fade-small {
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@keyframes fade {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* Dots */
+.dot-container {
+  text-align: center;
+  padding: 20px;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  z-index: 10;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.dot-small {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active,
+.dot:hover,
+.dot-small.active,
+.dot-small:hover {
+  background-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Responsive slideshow */
+@media (max-width: 1024px) {
+  .main-slideshow {
+    height: 400px;
+    width: 95%;
+  }
+  
+  .small-slideshow {
+    height: 350px;
+  }
+  
+  .bottom-slideshows {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-slideshow {
+    height: 350px;
+    width: 95%;
+  }
+  
+  .bottom-slideshows {
+    flex-direction: column;
+    width: 95%;
+    gap: 15px;
+  }
+  
+  .small-slideshow {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-slideshow {
+    height: 250px;
+    width: 95%;
+  }
+  
+  .small-slideshow {
+    height: 220px;
+  }
+}
+
